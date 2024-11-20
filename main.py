@@ -11,11 +11,12 @@ def run():
 
     @bot.hybrid_command(name='ping')
     async def ping(context):
-        await context.send('pong')
+        await context.send('pong!')
 
     @bot.hybrid_command(name='dice')
-    async def dice(context, arg=6):
-        await context.send(random.randint(1, arg))
+    async def dice(context, arg = ''):
+        diceSize = int(arg) if arg.isdecimal() else 6
+        await context.send(f'rolling d{diceSize}: {random.randint(1, diceSize)}')
 
     bot.run(settings.DISCORD_API_TOKEN)
 
